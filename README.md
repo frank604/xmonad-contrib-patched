@@ -1,0 +1,1 @@
+== Patched xmonad-contrib ==
