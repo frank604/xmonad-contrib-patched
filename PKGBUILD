@@ -3,9 +3,9 @@
 # Contributor:: Vesa Kaihlavirta <vegai@iki.fi>
 # Contributor: orbisvicis <gmail.com>
 
-pkgname=xmonad-contrib-git
+pkgname=xmonad-contrib-ewmh
 _srcname=xmonad-contrib
-pkgver=20161106
+pkgver=20161208
 pkgrel=1
 pkgdesc="Add-ons for xmonad"
 arch=('i686' 'x86_64')
@@ -31,7 +31,7 @@ md5sums=('SKIP'
 
 pkgver() {
     echo "$(date +%Y%m%d)"
-    #cd "${pkgname/-git}"
+    #cd "${pkgname/-ewmh}"
   #git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
   #git describe --always | sed -E 's/([^-]*-g)/r\1/;s/-/./g'
 }
@@ -42,7 +42,7 @@ prepare() {
 }
 
 build() {
-  cd $srcdir/${pkgname/-git}
+  cd $srcdir/${pkgname/-ewmh}
 
   runhaskell Setup.lhs configure --ghc --enable-shared --enable-split-objs --prefix=/usr -fuse_xft \
              --libsubdir=\$compiler/site-local/\$pkgid
@@ -53,9 +53,9 @@ build() {
 }
 
 package() {
-  cd $srcdir/${pkgname/-git}
-  install -D -m744 register.sh $pkgdir/usr/share/haskell/${pkgname/-git}/register.sh
-  install -m744 unregister.sh $pkgdir/usr/share/haskell/${pkgname/-git}/unregister.sh
+  cd $srcdir/${pkgname/-ewmh}
+  install -D -m744 register.sh $pkgdir/usr/share/haskell/${pkgname/-ewmh}/register.sh
+  install -m744 unregister.sh $pkgdir/usr/share/haskell/${pkgname/-ewmh}/unregister.sh
   runhaskell Setup.lhs copy --destdir=$pkgdir
   install -D LICENSE $pkgdir/usr/share/licenses/xmonad-contrib/LICENSE
 }
